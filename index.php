@@ -14,7 +14,7 @@ $start_no = ($now-1)*$page_item;//配列の何番目から取得すればいい�
 $item_data = array_slice($items, $start_no, $page_item, true);
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ja" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>商品ページ</title>
