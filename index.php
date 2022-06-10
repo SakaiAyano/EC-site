@@ -12,6 +12,14 @@ if(!isset($_GET['page_id'])){
 
 $start_no = ($now-1)*$page_item;//配列の何番目から取得すればいいか
 $item_data = array_slice($items, $start_no, $page_item, true);
+
+//現在の時刻を取得して挨拶文を変更する
+
+$hello
+
+session_start();
+$id = $_SESSION['id'];
+$name = $_SESSION['name'];
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -21,7 +29,10 @@ $item_data = array_slice($items, $start_no, $page_item, true);
     <link rel="stylesheet" href="css/stylesheet.css">
   </head>
   <body>
-    <header><img src='images/header.jpg' class='header-banner'></header>
+    <header>
+      <img src='images/header.jpg' class='header-banner'>
+      <p><?php echo $hello?><?php echo $name?>様！！</P>
+    </header>
     <main>
       <div class='container'>
       <h1>商品一覧ページ</h1>

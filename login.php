@@ -9,7 +9,8 @@ $err_msg=array('mail'=>'','pass'=>'','err'=>'');
 //POST送信があるかないか判定
 if(!empty($_POST)){
     $mail=$_POST['mail'];
-    $pass=password_hash($_POST['pass'],PASSWORD_DEFAULT);//入力pwをハッシュ化
+    $pass=$_POST['pass'];
+
 
     //各々バリデーションチェック
     if($mail===""){
@@ -24,17 +25,20 @@ if(!empty($_POST)){
     if($err_msg['mail']==='' && $err_msg['pass']==='' && $err_msg['err'] ==='' ){
         //会員情報のデータを取得[users]
         //$sql = 'SELECT id AS count FROM users WHERE mail=:mail AND pass=:pass';
-        $sql = 'SELECT * FROM users WHERE mail="'.$mail.'" AND pass="'.$pass.'"';
+        $sql = 'SELECT count(*) AS count FROM users WHERE mail="'.$mail.'" AND pass="'.$pass.'"';
         $stmt = $dbh->query($sql);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(password_verify($_POST['pass'], $result['pass'])){
+        if($result['count']>0){
+          $sql = 'SELECT * FROM users WHERE mail="'.$mail.'" AND pass="'.$pass.'"';
+          $stmt = $dbh->query($sql);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
           $_SESSION['id']=$result['id'];
-          //$_SESSION['name']=$result['mail'];
+          $_SESSION['name']=$result['name'];
           $err_msg['err']='OK';
-          header("Location:kakunin.php");
+          header("Location:index.php");
           exit();
         }else{
-          $err_msg['err']=$result['pass'];
+          $err_msg['err']="ログイン失敗";
         }
         
     }
