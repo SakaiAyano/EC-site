@@ -33,14 +33,15 @@ if(!empty($_POST)){
           $stmt = $dbh->query($sql);
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
           $_SESSION['id']=$result['id'];
-          $_SESSION['name']=$result['name'];
+          $_SESSION['name_f']=$result['name_f'];
+          $_SESSION['name_l']=$result['name_l'];
           $err_msg['err']='OK';
           header("Location:index.php");
           exit();
         }else{
           $err_msg['err']="ログイン失敗";
         }
-        
+
     }
 
 }

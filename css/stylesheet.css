@@ -19,6 +19,22 @@ body{
   height:200px;
 }
 
+.welcome-hello{
+  position:absolute;
+  top:150px;
+  right:30px;
+  color:#696969;
+  font-size:16px;
+}
+
+.log-out{
+  position:absolute;
+  top:10px;
+  right:30px;
+  color:#696969;
+  font-size:16px;
+}
+
 a{
   text-decoration: none;
   color:#000000;

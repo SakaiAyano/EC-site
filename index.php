@@ -14,12 +14,19 @@ $start_no = ($now-1)*$page_item;//配列の何番目から取得すればいい�
 $item_data = array_slice($items, $start_no, $page_item, true);
 
 //現在の時刻を取得して挨拶文を変更する
-
-$hello
+$now_h = date('H');
+if($now_h>=5 && $now_h<=11){
+  $hello = "おはようございます";
+}elseif($now_h>=12 && $now_h<=17){
+  $hello = "こんにちは";
+}else{
+  $hello = "こんばんは";
+}
 
 session_start();
 $id = $_SESSION['id'];
-$name = $_SESSION['name'];
+$name = $_SESSION['name_f']." ".$_SESSION['name_l'];
+
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -31,7 +38,13 @@ $name = $_SESSION['name'];
   <body>
     <header>
       <img src='images/header.jpg' class='header-banner'>
-      <p><?php echo $hello?><?php echo $name?>様！！</P>
+      <div class="log-out">
+        <a href="logout.php">ログアウト</a>
+      </div>
+      <div class="welcome-hello">
+       <p><?php echo $hello?></p>
+       <p><?php echo $name?>様</P>
+      </div>
     </header>
     <main>
       <div class='container'>
